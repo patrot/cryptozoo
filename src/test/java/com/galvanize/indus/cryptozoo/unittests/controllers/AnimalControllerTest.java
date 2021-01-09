@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.hasSize;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -42,7 +43,7 @@ public class AnimalControllerTest {
         Animal animal = new Animal();
         Animal animalWithId = new Animal();
         animalWithId.setId("01");
-        when(animalService.save(animal)).thenReturn(animalWithId);
+        when(animalService.save(any())).thenReturn(animalWithId);
 
         mockMvc
                 .perform(
@@ -51,8 +52,8 @@ public class AnimalControllerTest {
                                 .characterEncoding("utf-8")
                                 .content(objectMapper.writeValueAsString(animal))
                 )
-                .andExpect(status().isCreated());
-//                .andExpect(jsonPath("$.id").exists());
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.id").exists());
 //                .andExpect(jsonPath("$.username").value(username))
 //                .andExpect(jsonPath("$.password").doesNotExist())
 //                .andExpect(jsonPath("$.active").value(true));
