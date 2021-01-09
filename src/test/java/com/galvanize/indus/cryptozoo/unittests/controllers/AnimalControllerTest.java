@@ -1,8 +1,11 @@
-package com.galvanize.indus.cryptozoo.controllers;
+package com.galvanize.indus.cryptozoo.unittests.controllers;
 
+import com.galvanize.indus.cryptozoo.controllers.AnimalController;
+import com.galvanize.indus.cryptozoo.services.AnimalService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -16,6 +19,9 @@ public class AnimalControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @MockBean
+    private AnimalService animalService;
 
     @Test
     public void getAnimals() throws Exception {
