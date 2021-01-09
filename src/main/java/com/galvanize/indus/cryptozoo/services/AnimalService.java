@@ -19,4 +19,8 @@ public class AnimalService {
     public List<Animal> findAll() {
         return animalRepository.findAll();
     }
+
+    public Animal save(Animal animal) {
+        return animalRepository.save(animal);
+    }
 }
